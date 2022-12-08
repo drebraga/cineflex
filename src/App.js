@@ -4,18 +4,58 @@ import GlobalStyle from "./styles/GlobalStyle";
 import MainPage from "./components/MainPage";
 import SessionPage from "./components/SessionPage";
 import TickesPage from "./components/TickesPage";
-import QuitPage from "./components/QuitPage";
+import Sucess from "./components/Sucess";
+import { useState } from "react";
 
 function App() {
+  const [seatsPicks, setSeatsPicks] = useState([]);
+  const [seatsPicksIDS, setSeatsPicksIDS] = useState([]);
+  const [userName, setUserName] = useState("");
+  const [userCPF, setUserCPF] = useState("");
+  const [movie, setMovie] = useState("");
+  const [session, setSession] = useState("");
+
+  function restart() {
+    setSeatsPicks([]);
+    setUserName("");
+    setUserCPF("");
+    setMovie("");
+    setSession("");
+  }
+
   return (
     <BrowserRouter>
       <GlobalStyle />
       <Header>CINEFLEX</Header>
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="/sessoes/:idFilme" element={<SessionPage />}></Route>
-        <Route path="/assentos/:idSessao" element={<TickesPage />}></Route>
-        <Route path="/sucesso" element={<QuitPage />}></Route>
+        <Route path="/" element={
+          <MainPage
+            restart={restart}
+          />} />
+        <Route path="/sessoes/:idFilme" element={<SessionPage />} />
+        <Route path="/assentos/:idSessao" element={
+          <TickesPage
+            seatsPicks={seatsPicks}
+            userName={userName}
+            setUserName={setUserName}
+            userCPF={userCPF}
+            setUserCPF={setUserCPF}
+            setMovie={setMovie}
+            setSession={setSession}
+            setSeatsPicks={setSeatsPicks}
+            seatsPicksIDS={seatsPicksIDS}
+            setSeatsPicksIDS={setSeatsPicksIDS}
+          />}
+        />
+        <Route path="/sucesso" element={
+          <Sucess
+            movie={movie}
+            session={session}
+            seatsPicks={seatsPicks}
+            userName={userName}
+            userCPF={userCPF}
+            seatsPicksIDS={seatsPicksIDS}
+          />} />
       </Routes>
     </BrowserRouter>
   );

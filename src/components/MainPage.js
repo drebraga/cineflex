@@ -2,18 +2,22 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Load from "../styles/LoadingStyle";
 
-const MainPage = () => {
+const MainPage = ({restart}) => {
     const [movieList, setMovieList] = useState(null);
 
     useEffect(() => {
         const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
-        promise.then((res) => setMovieList(res.data));
+        promise.then((res) => {
+            setMovieList(res.data);
+            restart()
+        });
         promise.catch((err) => console.log(err));
     }, []);
 
     if (movieList === null) {
-        return <div>Carregando...</div>
+        return <Load />
     }
 
     return (

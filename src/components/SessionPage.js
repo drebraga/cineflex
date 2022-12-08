@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Load from "../styles/LoadingStyle";
 
 const SessionPage = () => {
     const { idFilme } = useParams();
@@ -15,7 +16,7 @@ const SessionPage = () => {
     }, [idFilme]);
 
     if (movieSessions === null) {
-        return <div>Carregando...</div>
+        return <Load />
     }
 
     return (

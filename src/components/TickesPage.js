@@ -1,29 +1,67 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Load from "../styles/LoadingStyle";
 
-const TickesPage = () => {
+const TickesPage = ({
+    seatsPicks,
+    userName,
+    setUserName,
+    userCPF,
+    setUserCPF,
+    setMovie,
+    setSession,
+    setSeatsPicks,
+    seatsPicksIDS,
+    setSeatsPicksIDS
+}) => {
     const { idSessao } = useParams();
     const [ticketsSession, setTicketSession] = useState(null);
-    console.log(ticketsSession);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`);
-        promise.then((res) => setTicketSession(res.data));
+        promise.then((res) => {
+            setTicketSession(res.data);
+            setMovie(res.data.movie.title);
+            setSession(`${res.data.day.weekday} ${res.data.name}`);
+        });
         promise.catch((err) => console.log(err.response.data));
-    }, [idSessao]);
+    }, [idSessao, setMovie, setSession]);
 
     if (ticketsSession === null) {
-        return <div>Carregando...</div>
+        return <Load />
     }
+
+    const selectSeat = (seat, isAvailable, seatId) => {
+        if (!isAvailable) {
+            alert("Esse assento está indisponível");
+        } else if (!seatsPicks.includes(seat)) {
+            const seatsSelected = [...seatsPicks, seat];
+            const seatsSelectedIDS = [...seatsPicksIDS, seatId];
+            setSeatsPicks(seatsSelected);
+            setSeatsPicksIDS(seatsSelectedIDS);
+        } else {
+            const seatsSelected = seatsPicks.filter((e) => e !== seat);
+            setSeatsPicks(seatsSelected);
+            const seatsSelectedIDS = seatsPicksIDS.filter((e) => e !== seatId);
+            setSeatsPicks(seatsSelectedIDS);
+        }
+    }
+
     return (
         <SessionPageStyle>
             <h1>Selecione o(s) assento(s)</h1>
             <SeatList>
                 {ticketsSession.seats.map(e =>
                     <li key={e.id}>
-                        <Seat isAvailable={e.isAvailable}>{e.name}</Seat>
+                        <Seat
+                            onClick={() => selectSeat(e.name, e.isAvailable, e.id)}
+                            type="button"
+                            isAvailable={(seatsPicks.includes(e.name)) ? "selected" : e.isAvailable}
+                            value={e.name}
+                        />
                     </li>
                 )}
             </SeatList>
@@ -43,11 +81,25 @@ const TickesPage = () => {
             </ListEx>
             <InputBox>
                 <p>Nome do comprador:</p>
-                <input type="text" placeholder="Digite seu nome..." />
+                <input
+                    type="text"
+                    placeholder="Digite seu nome..."
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                />
                 <p>CPF do comprador:</p>
-                <input type="text" placeholder="Digite seu CPF..." />
+                <input
+                    type="text"
+                    placeholder="Digite seu CPF..."
+                    value={userCPF}
+                    onChange={(e) => setUserCPF(e.target.value)}
+                />
             </InputBox>
-            <Button type="button" value="Reservar assento(s)" />
+            <Button
+                type="button"
+                value="Reservar assento(s)"
+                onClick={() => navigate("/sucesso")}
+            />
             <Footer>
                 <img src={ticketsSession.movie.posterURL} alt={ticketsSession.movie.title} />
                 {ticketsSession.movie.title}<br />
@@ -58,7 +110,6 @@ const TickesPage = () => {
 }
 
 export default TickesPage;
-
 
 const SessionPageStyle = styled.main`
     width: 100%;
@@ -101,7 +152,7 @@ const ListEx = styled.ul`
         align-items: center;
     }
 `
-const Seat = styled.div`
+const Seat = styled.input`
     width: 25px;
     height: 25px;
     background-color: ${props => (props.isAvailable === "selected") ? "#1AAE9E" :
@@ -113,6 +164,16 @@ const Seat = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #000000;
 `
 const SeatList = styled.ul`
     display: flex;
