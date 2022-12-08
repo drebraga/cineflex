@@ -13,8 +13,8 @@ const MainPage = ({restart}) => {
             setMovieList(res.data);
             restart()
         });
-        promise.catch((err) => console.log(err));
-    }, []);
+        promise.catch((err) => console.log(err.message));
+    }, [restart]);
 
     if (movieList === null) {
         return <Load />
