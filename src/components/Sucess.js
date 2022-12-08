@@ -49,14 +49,12 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
 `
-
 const ListaFinal = styled.ul`
     width: 80%;
     li {
         margin: 0 0 50px 0;
     }
 `
-
 const Texto = styled.p`
     margin: 0 0 10px 0;
     font-family: 'Roboto', sans-serif;
@@ -69,7 +67,6 @@ const Texto = styled.p`
     letter-spacing: 0.04em;
     color: #293845;
 `
-
 const SubTitulo = styled.h2`
     margin: 0 0 10px 0;
     font-family: 'Roboto', sans-serif;
@@ -82,7 +79,6 @@ const SubTitulo = styled.h2`
     letter-spacing: 0.04em;
     color: #293845;
 `
-
 const Titulo = styled.h1`
     height: 110px;
     font-family: 'Roboto', sans-serif;
@@ -103,14 +99,14 @@ const Button = styled.input`
     height: 42px;
     background: #E8833A;
     border-radius: 3px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center;
     letter-spacing: 0.04em;
     color: #FFFFFF;
 `

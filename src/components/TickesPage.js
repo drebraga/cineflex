@@ -239,14 +239,14 @@ const Button = styled.input`
     height: 42px;
     background: #E8833A;
     border-radius: 3px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center;
     letter-spacing: 0.04em;
     color: #FFFFFF;
 `
