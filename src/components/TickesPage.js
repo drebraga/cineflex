@@ -57,6 +57,7 @@ const TickesPage = ({
                 {ticketsSession.seats.map(e =>
                     <li key={e.id}>
                         <Seat
+                            data-test="seat"
                             onClick={() => selectSeat(e.name, e.isAvailable, e.id)}
                             type="button"
                             isAvailable={(seatsPicks.includes(e.name)) ? "selected" : e.isAvailable}
@@ -82,6 +83,7 @@ const TickesPage = ({
             <InputBox>
                 <p>Nome do comprador:</p>
                 <input
+                    data-test="client-name"
                     type="text"
                     placeholder="Digite seu nome..."
                     value={userName}
@@ -89,6 +91,7 @@ const TickesPage = ({
                 />
                 <p>CPF do comprador:</p>
                 <input
+                    data-test="client-cpf"
                     type="text"
                     placeholder="Digite seu CPF..."
                     value={userCPF}
@@ -96,11 +99,12 @@ const TickesPage = ({
                 />
             </InputBox>
             <Button
+                data-test="book-seat-btn"
                 type="button"
                 value="Reservar assento(s)"
                 onClick={() => navigate("/sucesso")}
             />
-            <Footer>
+            <Footer data-test="footer">
                 <img src={ticketsSession.movie.posterURL} alt={ticketsSession.movie.title} />
                 {ticketsSession.movie.title}<br />
                 {ticketsSession.day.weekday} - {ticketsSession.name}

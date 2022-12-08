@@ -24,11 +24,11 @@ const SessionPage = () => {
             <h1>Selecione o horário</h1>
             <SessionList>
                 {movieSessions.days.map(e =>
-                    <ul key={e.id}>
+                    <ul data-test="movie-day" key={e.id}>
                         <p>{e.weekday} {e.date}</p>
                         <Session>
                             {e.showtimes.map(e =>
-                                <Link key={e.id} to={`/assentos/${e.id}`}>
+                                <Link data-test="showtime" key={e.id} to={`/assentos/${e.id}`}>
                                     <SessionBox>{e.name}</SessionBox>
                                 </Link>
                             )}
@@ -36,7 +36,7 @@ const SessionPage = () => {
                     </ul>
                 )}
             </SessionList>
-            <Footer>
+            <Footer data-test="footer">
                 <img src={movieSessions.posterURL} alt={movieSessions.title} />
                 {movieSessions.title}
             </Footer>

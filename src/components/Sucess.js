@@ -18,22 +18,23 @@ const Sucess = ({ movie, session, seatsPicks, userName, userCPF, seatsPicksIDS }
         <Container>
             <Titulo>Pedido feito<br />com sucesso!</Titulo>
             <ListaFinal>
-                <li>
+                <li data-test="movie-info">
                     <SubTitulo>Filme e sessão</SubTitulo>
                     <Texto>{movie}</Texto>
                     <Texto>{session}</Texto>
                 </li>
-                <li>
+                <li data-test="seats-info">
                     <SubTitulo>Ingressos</SubTitulo>
                     {seatsPicks.map(e => <Texto key={e}>Assento {e}</Texto>)}
                 </li>
-                <li>
+                <li data-test="client-info">
                     <SubTitulo>Comprador</SubTitulo>
                     <Texto>Nome: {userName}</Texto>
                     <Texto>CPF: {userCPF}</Texto>
                 </li>
             </ListaFinal>
             <Button
+                data-test="go-home-btn"
                 type="button"
                 value="Voltar pra Home"
                 onClick={() => navigate("/")}

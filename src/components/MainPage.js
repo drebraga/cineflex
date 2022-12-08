@@ -25,7 +25,7 @@ const MainPage = ({restart}) => {
             <h1>Selecione o filme</h1>
             <ul>
                 {movieList.map((e) =>
-                    <Link key={e.id} to={`/sessoes/${e.id}`} >
+                    <Link key={e.id} data-test="movie" to={`/sessoes/${e.id}`} >
                         <Image src={e.posterURL} alt={e.title} />
                     </Link>
                 )}
