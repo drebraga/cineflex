@@ -21,7 +21,7 @@ const Sucess = ({ movie, session, seatsPicks, userName, userCPF, seatsPicksIDS }
                 <li data-test="movie-info">
                     <SubTitulo>Filme e sessão</SubTitulo>
                     <Texto>{movie}</Texto>
-                    <Texto>{session}</Texto>
+                    <Texto>{session.weekday} {session.day}</Texto>
                 </li>
                 <li data-test="seats-info">
                     <SubTitulo>Ingressos</SubTitulo>

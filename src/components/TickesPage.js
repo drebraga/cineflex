@@ -25,7 +25,7 @@ const TickesPage = ({
         promise.then((res) => {
             setTicketSession(res.data);
             setMovie(res.data.movie.title);
-            setSession(`${res.data.day.weekday} ${res.data.name}`);
+            setSession({weekday: res.data.day.weekday, day: res.data.name});
         });
         promise.catch((err) => console.log(err.response.data));
     }, []);
