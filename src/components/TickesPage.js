@@ -24,8 +24,9 @@ const TickesPage = ({
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`);
         promise.then((res) => {
             setTicketSession(res.data);
+            console.log(res.data);
             setMovie(res.data.movie.title);
-            setSession({weekday: res.data.day.weekday, day: res.data.name});
+            setSession({weekday: res.data.day.date, day: res.data.name});
         });
         promise.catch((err) => console.log(err.response.data));
     }, []);

@@ -6,11 +6,10 @@ import styled from "styled-components";
 const Sucess = ({ movie, session, seatsPicks, userName, userCPF, seatsPicksIDS }) => {
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const objAssentos = { ids: seatsPicksIDS, name: userName, cpf: userCPF }
         const promise = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", objAssentos);
-        promise.then((res) => console.log(res));
+        promise.then((res) => console.log("Pedido enviado com sucesso"));
         promise.catch((err) => console.log(err.response.data));
     }, []);
 
