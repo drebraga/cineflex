@@ -28,7 +28,7 @@ const TickesPage = ({
             setSession(`${res.data.day.weekday} ${res.data.name}`);
         });
         promise.catch((err) => console.log(err.response.data));
-    }, [idSessao, setMovie, setSession]);
+    }, []);
 
     if (ticketsSession === null) {
         return <Load />
@@ -134,7 +134,7 @@ const SessionPageStyle = styled.main`
         letter-spacing: 0.04em;
         color: #293845;
     }
-`
+`;
 const ListEx = styled.ul`
     width: 70%;
     height: 60px;
@@ -155,7 +155,7 @@ const ListEx = styled.ul`
         flex-direction: column;
         align-items: center;
     }
-`
+`;
 const Seat = styled.input`
     width: 25px;
     height: 25px;
@@ -178,13 +178,13 @@ const Seat = styled.input`
     text-align: center;
     letter-spacing: 0.04em;
     color: #000000;
-`
+`;
 const SeatList = styled.ul`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 0 5%;
-`
+`;
 const InputBox = styled.div`
     width: 85%;
     p {
@@ -213,7 +213,7 @@ const InputBox = styled.div`
         line-height: 21px;
         color: #AFAFAF;
     }
-`
+`;
 const Footer = styled.footer`
     position: fixed;
     bottom: 0;
@@ -235,7 +235,7 @@ const Footer = styled.footer`
         height: 70px;
         margin: 10px;
     }
-`
+`;
 const Button = styled.input`
     margin: 40px 0 140px 0;
     max-width: 225px;
@@ -253,4 +253,4 @@ const Button = styled.input`
     justify-content: center;
     letter-spacing: 0.04em;
     color: #FFFFFF;
-`
+`;

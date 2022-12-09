@@ -13,7 +13,7 @@ const SessionPage = () => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
         promise.then((res) => setMovieSessions(res.data));
         promise.catch((err) => console.log(err.response.data));
-    }, [idFilme]);
+    }, []);
 
     if (movieSessions === null) {
         return <Load />
@@ -78,17 +78,17 @@ const SessionPageStyle = styled.main`
         color: #293845;
         margin: 0 0 7% 7%;
     }
-`
+`;
 
 const SessionList = styled.ul`
     padding-bottom: 80px;
-`
+`;
 
 const Session = styled.li`
     display: flex;
     align-items: center;
     margin-bottom: 10%;
-`
+`;
 
 const SessionBox = styled.div`
     display: flex;
@@ -109,7 +109,7 @@ const SessionBox = styled.div`
     letter-spacing: 0.02em;
     color: #FFFFFF;
     
-`
+`;
 
 const Footer = styled.footer`
     position: fixed;
@@ -132,4 +132,4 @@ const Footer = styled.footer`
         height: 70px;
         margin: 10px;
     }
-`
+`;

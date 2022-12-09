@@ -12,7 +12,7 @@ const Sucess = ({ movie, session, seatsPicks, userName, userCPF, seatsPicksIDS }
         const promise = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", objAssentos);
         promise.then((res) => console.log(res));
         promise.catch((err) => console.log(err.response.data));
-    }, [seatsPicksIDS, userName, userCPF]);
+    }, []);
 
     return (
         <Container>
@@ -49,13 +49,13 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`
+`;
 const ListaFinal = styled.ul`
     width: 80%;
     li {
         margin: 0 0 50px 0;
     }
-`
+`;
 const Texto = styled.p`
     margin: 0 0 10px 0;
     font-family: 'Roboto', sans-serif;
@@ -67,7 +67,7 @@ const Texto = styled.p`
     align-items: center;
     letter-spacing: 0.04em;
     color: #293845;
-`
+`;
 const SubTitulo = styled.h2`
     margin: 0 0 10px 0;
     font-family: 'Roboto', sans-serif;
@@ -79,7 +79,7 @@ const SubTitulo = styled.h2`
     align-items: center;
     letter-spacing: 0.04em;
     color: #293845;
-`
+`;
 const Titulo = styled.h1`
     height: 110px;
     font-family: 'Roboto', sans-serif;
@@ -92,7 +92,7 @@ const Titulo = styled.h1`
     text-align: center;
     letter-spacing: 0.04em;
     color: #247A6B;
-`
+`;
 const Button = styled.input`
     margin: 40px 0 140px 0;
     max-width: 225px;
@@ -110,4 +110,4 @@ const Button = styled.input`
     justify-content: center;
     letter-spacing: 0.04em;
     color: #FFFFFF;
-`
+`;

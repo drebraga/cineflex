@@ -11,10 +11,10 @@ const MainPage = ({restart}) => {
         const promise = axios.get("https://mock-api.driven.com.br/api/v8/cineflex/movies");
         promise.then((res) => {
             setMovieList(res.data);
-            restart()
+            restart();
         });
         promise.catch((err) => console.log(err.message));
-    }, [restart]);
+    }, []);
 
     if (movieList === null) {
         return <Load />
@@ -51,9 +51,9 @@ const MainPageStyle = styled.main`
         letter-spacing: 0.04em;
         color: #293845;
     }
-`
+`;
 
 const Image = styled.img`
     width: 40%;
     margin: 5%;
-`
+`;

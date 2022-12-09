@@ -16,6 +16,6 @@ const LoadingArea = styled.div`
     img{
         height: 5%;
     }
-`
+`;
 
 export default Load;
