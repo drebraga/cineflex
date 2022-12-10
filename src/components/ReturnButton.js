@@ -5,7 +5,7 @@ import { BiArrowBack } from "react-icons/bi";
 export default function ReturnButton() {
     const navigate = useNavigate();
     const previousPage = -1;
-    return <ButtonRet data-test="go-home-header-btn" onClick={() => navigate(previousPage)}><BiArrowBack /></ButtonRet>
+    return <ButtonRet data-test="go-home-header-btn" onClick={() => navigate(previousPage)}><BiArrowBack /></ButtonRet>;
 }
 
   const ButtonRet = styled.div`

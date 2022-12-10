@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Load from "../styles/LoadingStyle";
-import ReturnButton from "./ReturnButton"
+import ReturnButton from "./ReturnButton";
 
 const TickesPage = ({
     seatsPicks,

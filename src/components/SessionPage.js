@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Load from "../styles/LoadingStyle";
-import ReturnButton from "./ReturnButton"
+import ReturnButton from "./ReturnButton";
 
 const SessionPage = () => {
     const { idFilme } = useParams();
