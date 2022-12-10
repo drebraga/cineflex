@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Load from "../styles/LoadingStyle";
+import ReturnButton from "./ReturnButton"
 
 const TickesPage = ({
     seatsPicks,
@@ -52,6 +53,7 @@ const TickesPage = ({
 
     return (
         <SessionPageStyle>
+            <ReturnButton />
             <h1>Selecione o(s) assento(s)</h1>
             <SeatList>
                 {ticketsSession.seats.map(e =>

@@ -15,6 +15,7 @@ function App() {
   const [movie, setMovie] = useState("");
   const [session, setSession] = useState("");
 
+
   function restart() {
     setSeatsPicks([]);
     setUserName("");
@@ -23,10 +24,14 @@ function App() {
     setSession("");
   }
 
+
+
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Header>CINEFLEX</Header>
+      <Header>
+        CINEFLEX
+      </Header>
       <Routes>
         <Route path="/" element={
           <MainPage

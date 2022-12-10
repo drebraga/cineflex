@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Load from "../styles/LoadingStyle";
+import ReturnButton from "./ReturnButton"
 
 const SessionPage = () => {
     const { idFilme } = useParams();
@@ -21,6 +22,7 @@ const SessionPage = () => {
 
     return (
         <SessionPageStyle>
+            <ReturnButton />
             <h1>Selecione o horário</h1>
             <SessionList>
                 {movieSessions.days.map(e =>
