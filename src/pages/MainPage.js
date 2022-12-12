@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Load from "../styles/LoadingStyle";
 
-const MainPage = ({restart}) => {
+const MainPage = ({ restart }) => {
     const [movieList, setMovieList] = useState(null);
 
     useEffect(() => {
@@ -52,7 +52,6 @@ const MainPageStyle = styled.main`
         color: #293845;
     }
 `;
-
 const Image = styled.img`
     width: 40%;
     margin: 5%;

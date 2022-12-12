@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
-import MainPage from "./components/MainPage";
-import SessionPage from "./components/SessionPage";
-import TickesPage from "./components/TickesPage";
-import Sucess from "./components/Sucess";
+import MainPage from "./pages/MainPage";
+import SessionPage from "./pages/SessionPage";
+import TickesPage from "./pages/TickesPage";
+import Sucess from "./pages/SucessPage";
 import { useState } from "react";
 
 function App() {
@@ -16,8 +16,10 @@ function App() {
   const [session, setSession] = useState("");
 
 
+
   function restart() {
     setSeatsPicks([]);
+    setSeatsPicksIDS([]);
     setUserName("");
     setUserCPF("");
     setMovie("");
@@ -81,4 +83,5 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;

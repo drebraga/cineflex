@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Load from "../styles/LoadingStyle";
-import ReturnButton from "./ReturnButton";
+import ReturnButton from "../components/ReturnButton";
 
 const SessionPage = () => {
     const { idFilme } = useParams();
@@ -81,17 +81,14 @@ const SessionPageStyle = styled.main`
         margin: 0 0 7% 7%;
     }
 `;
-
 const SessionList = styled.ul`
     padding-bottom: 80px;
 `;
-
 const Session = styled.li`
     display: flex;
     align-items: center;
     margin-bottom: 10%;
 `;
-
 const SessionBox = styled.div`
     display: flex;
     align-items: center;
@@ -112,7 +109,6 @@ const SessionBox = styled.div`
     color: #FFFFFF;
     
 `;
-
 const Footer = styled.footer`
     position: fixed;
     bottom: 0;

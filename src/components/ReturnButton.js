@@ -9,7 +9,7 @@ export default function ReturnButton() {
 }
 
   const ButtonRet = styled.div`
-  position: fixed;
+  position: absolute;
   top: 18px;
   left: 18px;
   font-size: 34px;
