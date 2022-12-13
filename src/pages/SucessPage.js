@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Sucess = ({ movie, session, seatsPicks, userName, userCPF, seatsPicksIDS }) => {
+const Sucess = ({ movie, session, seatsPicks, seatsPicksIDS, compradores }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const objAssentos = { ids: seatsPicksIDS, name: userName, cpf: userCPF }
+        const objAssentos = { ids: seatsPicksIDS, compradores }
         const promise = axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", objAssentos);
         promise.then(() => console.log("Pedido enviado com sucesso"));
         promise.catch((err) => console.log(err.response.data));
@@ -27,9 +27,13 @@ const Sucess = ({ movie, session, seatsPicks, userName, userCPF, seatsPicksIDS }
                     {seatsPicks.map(e => <Texto key={e}>Assento {e}</Texto>)}
                 </li>
                 <li data-test="client-info">
-                    <SubTitulo>Comprador</SubTitulo>
-                    <Texto>Nome: {userName}</Texto>
-                    <Texto>CPF: {userCPF}</Texto>
+                    <SubTitulo>Comprador(es)</SubTitulo>
+                    {compradores.map(e =>
+                        <div key={e.idAssento}>
+                            <Texto>Nome: {e.nome}</Texto>
+                            <Texto>CPF: {e.cpf}</Texto>
+                        </div>
+                    )}
                 </li>
             </ListaFinal>
             <Button

@@ -10,22 +10,18 @@ import { useState } from "react";
 function App() {
   const [seatsPicks, setSeatsPicks] = useState([]);
   const [seatsPicksIDS, setSeatsPicksIDS] = useState([]);
-  const [userName, setUserName] = useState("");
-  const [userCPF, setUserCPF] = useState("");
   const [movie, setMovie] = useState("");
   const [session, setSession] = useState("");
-
+  const [compradores, setCompradores] = useState([]);
 
 
   function restart() {
     setSeatsPicks([]);
     setSeatsPicksIDS([]);
-    setUserName("");
-    setUserCPF("");
     setMovie("");
     setSession("");
+    setCompradores([]);
   }
-
 
 
   return (
@@ -43,15 +39,13 @@ function App() {
         <Route path="/assentos/:idSessao" element={
           <TickesPage
             seatsPicks={seatsPicks}
-            userName={userName}
-            setUserName={setUserName}
-            userCPF={userCPF}
-            setUserCPF={setUserCPF}
             setMovie={setMovie}
             setSession={setSession}
             setSeatsPicks={setSeatsPicks}
             seatsPicksIDS={seatsPicksIDS}
             setSeatsPicksIDS={setSeatsPicksIDS}
+            compradores={compradores}
+            setCompradores={setCompradores}
           />}
         />
         <Route path="/sucesso" element={
@@ -59,9 +53,8 @@ function App() {
             movie={movie}
             session={session}
             seatsPicks={seatsPicks}
-            userName={userName}
-            userCPF={userCPF}
             seatsPicksIDS={seatsPicksIDS}
+            compradores={compradores}
           />} />
       </Routes>
     </BrowserRouter>

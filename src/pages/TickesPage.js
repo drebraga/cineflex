@@ -7,15 +7,13 @@ import ReturnButton from "../components/ReturnButton";
 
 const TickesPage = ({
     seatsPicks,
-    userName,
-    setUserName,
-    userCPF,
-    setUserCPF,
     setMovie,
     setSession,
     setSeatsPicks,
     seatsPicksIDS,
-    setSeatsPicksIDS
+    setSeatsPicksIDS,
+    compradores,
+    setCompradores
 }) => {
     const { idSessao } = useParams();
     const [ticketsSession, setTicketSession] = useState(null);
@@ -43,12 +41,31 @@ const TickesPage = ({
             const seatsSelectedIDS = [...seatsPicksIDS, seatId];
             setSeatsPicks(seatsSelected);
             setSeatsPicksIDS(seatsSelectedIDS);
+            const buyers = [...compradores, {
+                idAssento: seatId,
+                nome: '',
+                cpf: ''
+            }]
+            setCompradores(buyers);
         } else {
-            const seatsSelected = seatsPicks.filter((e) => e !== seat);
-            setSeatsPicks(seatsSelected);
-            const seatsSelectedIDS = seatsPicksIDS.filter((e) => e !== seatId);
-            setSeatsPicks(seatsSelectedIDS);
+            if (compradores.filter(e => e.idAssento === seatId)) {
+                if (window.confirm("Deseja realmente retirar o assento?")) {
+                    const seatsSelected = seatsPicks.filter((e) => e !== seat);
+                    setSeatsPicks(seatsSelected);
+                    const seatsSelectedIDS = seatsPicksIDS.filter((e) => e !== seatId);
+                    setSeatsPicksIDS(seatsSelectedIDS);
+                    const compradoresSelected = compradores.filter((e) => e.idAssento !== seatId);
+                    setCompradores(compradoresSelected);
+                }
+            }
         }
+    }
+
+    const handleForm = (e, idAssento) => {
+        e.preventDefault();
+        const buyers = compradores.map(a =>
+            a.idAssento === idAssento ? { ...a, [e.target.name]: e.target.value, } : a)
+        setCompradores(buyers);
     }
 
     return (
@@ -82,30 +99,38 @@ const TickesPage = ({
                     Indisponível
                 </li>
             </ListEx>
-            <InputBox>
-                <p>Nome do comprador:</p>
-                <input
-                    data-test="client-name"
-                    type="text"
-                    placeholder="Digite seu nome..."
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
+            <form>
+                {compradores.map((e, i) =>
+                    <InputBox key={e.idAssento}>
+                        <p>Nome do comprador:</p>
+                        <input
+                            data-test="client-name"
+                            type="text"
+                            placeholder="Digite seu nome..."
+                            name="nome"
+                            value={e.nome}
+                            onChange={(event) => handleForm(event, e.idAssento)}
+                            required
+                        />
+                        <p>CPF do comprador:</p>
+                        <input
+                            data-test="client-cpf"
+                            type="text"
+                            placeholder="Digite seu CPF..."
+                            name="cpf"
+                            value={e.cpf}
+                            onChange={(event) => handleForm(event, e.idAssento)}
+                            required
+                        />
+                    </InputBox>
+                )}
+                <Button
+                    data-test="book-seat-btn"
+                    type="button"
+                    value="Reservar assento(s)"
+                    onClick={() => navigate("/sucesso")}
                 />
-                <p>CPF do comprador:</p>
-                <input
-                    data-test="client-cpf"
-                    type="text"
-                    placeholder="Digite seu CPF..."
-                    value={userCPF}
-                    onChange={(e) => setUserCPF(e.target.value)}
-                />
-            </InputBox>
-            <Button
-                data-test="book-seat-btn"
-                type="button"
-                value="Reservar assento(s)"
-                onClick={() => navigate("/sucesso")}
-            />
+            </form>
             <Footer data-test="footer">
                 <img src={ticketsSession.movie.posterURL} alt={ticketsSession.movie.title} />
                 {ticketsSession.movie.title}<br />

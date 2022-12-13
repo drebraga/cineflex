@@ -53,6 +53,10 @@ const MainPageStyle = styled.main`
     }
 `;
 const Image = styled.img`
+    box-sizing: border-box;
+    border: 10px solid #FFFFFF;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
     width: 40%;
     margin: 5%;
 `;
