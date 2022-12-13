@@ -99,7 +99,7 @@ const TickesPage = ({
                     Indisponível
                 </li>
             </ListEx>
-            <form>
+            <form onSubmit={() => navigate("/sucesso")}>
                 {compradores.map((e, i) =>
                     <InputBox key={e.idAssento}>
                         <p>Nome do comprador:</p>
@@ -126,9 +126,8 @@ const TickesPage = ({
                 )}
                 <Button
                     data-test="book-seat-btn"
-                    type="button"
+                    type="submit"
                     value="Reservar assento(s)"
-                    onClick={() => navigate("/sucesso")}
                 />
             </form>
             <Footer data-test="footer">
